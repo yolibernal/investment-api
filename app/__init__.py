@@ -20,4 +20,7 @@ def create_app():
     from . import db
     db.init_app(app)
 
+    from . import init_db
+    init_db.init_app(app)
+
     return app
