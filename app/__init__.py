@@ -1,6 +1,7 @@
 import os
+import json
 
-from flask import Flask
+from flask import (Flask, jsonify)
 
 
 def create_app():
@@ -22,5 +23,18 @@ def create_app():
 
     from . import init_db
     init_db.init_app(app)
+
+    from . import company
+    app.register_blueprint(company.bp)
+
+    from . import investor
+    app.register_blueprint(investor.bp)
+
+    from . import investment
+    app.register_blueprint(investment.bp)
+
+    @app.route('/')
+    def hello():
+        return jsonify({'success': True}), 200
 
     return app
