@@ -19,7 +19,7 @@ The `investment_data.json` file has to be places in `/instance` before initializ
   * returns all investors in the company with {name}
 * `/company/{name}/investment`
   * returns all investments made by company with {name}
-  * response `{ investments: [...], total: { number_of_investments: x, amount: y } }`
+  * response format: `{ investments: [...], total: { number_of_investments: x, amount: y } }`
 
 Equivalent routes for `investor`
 
@@ -27,6 +27,8 @@ Equivalent routes for `investor`
 * `/investor/{name}`
 * `/investor/{name}/company`
 * `/investor/{name}/investment`
+  * response format: `{ investments: [...], total: { number_of_investments: x, amount_of_rounds: y } }`
+  * `amount_of_rounds` is total investment in the investment rounds, not of the investor itself as we don't have data on that
 
 * `/investment`
   * returns all investment rounds
