@@ -23,6 +23,7 @@ def get_db():
 
 
 def query_db(query, args=(), one=False):
+    ''' Utility function for easier querying '''
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
     cur.close()
