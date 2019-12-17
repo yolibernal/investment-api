@@ -4,6 +4,13 @@ import uuid
 from flask import current_app, g
 
 
+def dict_factory(cursor, row):
+    d = {}
+    for index, col in enumerate(cursor.description):
+        d[col[0]] = row[index]
+    return d
+
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -13,6 +20,13 @@ def get_db():
         g.db.row_factory = dict_factory
 
     return g.db
+
+
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
 
 
 def close_db(e=None):

@@ -47,7 +47,7 @@ def populate_db(investment_data):
 @click.command('init-db')
 @with_appcontext
 def init_db_command():
-    """Clear the existing data and create new tables."""
+    '''Clear the existing data and create new tables.'''
     create_tables()
     click.echo('Created the database tables.')
 
